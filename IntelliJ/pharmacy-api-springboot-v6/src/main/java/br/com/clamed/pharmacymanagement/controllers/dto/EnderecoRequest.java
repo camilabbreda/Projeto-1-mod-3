@@ -1,13 +1,16 @@
 package br.com.clamed.pharmacymanagement.controllers.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Builder
-@Setter
 @Getter
-@NoArgsConstructor
+@Setter
 @AllArgsConstructor
-public class EnderecoResponse {
+@NoArgsConstructor
+public class EnderecoRequest {
+
     private Long id;
 
     private String cep;
@@ -28,7 +31,7 @@ public class EnderecoResponse {
 
     private String longitude;
 
-    public EnderecoResponse( String cep, String logradouro, String numero, String bairro, String cidade, String estado, String complemento, String latitude, String longitude) {
+    public EnderecoRequest(String cep, String logradouro, String numero, String bairro, String cidade, String estado, String complemento, String latitude, String longitude) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -39,4 +42,15 @@ public class EnderecoResponse {
         this.latitude = latitude;
         this.longitude = longitude;
     }
+//    {
+//        "cep" : "cep",
+//        "logradouro" : "logradouro",
+//        "numero" : "numero",
+//        "bairro" : "bairro",
+//        "cidade" : "cidade",
+//        "estado" : "estado",
+//        "complemento" : "complemento",
+//        "latitude" : "latitude",
+//        "longitude" : "longitude"
+//    }
 }
