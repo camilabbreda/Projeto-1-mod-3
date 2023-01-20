@@ -1,43 +1,53 @@
-package br.com.clamed.pharmacymanagement.controllers.dto;
+package br.com.clamed.pharmacymanagement.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Getter
-@Setter
+@Entity
+@Table(name="endereco")
 @AllArgsConstructor
 @NoArgsConstructor
-public class EnderecoRequest {
+@Getter
+@Setter
+public class EnderecoEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Long id;
-
+    @NotNull
+    @Column
     private String cep;
-
+    @NotNull
+    @Column
     private String logradouro;
-
+    @NotNull
+    @Column
     private String numero;
-
+    @NotNull
+    @Column
     private String bairro;
-
+    @NotNull
+    @Column
     private String cidade;
-
+    @NotNull
+    @Column
     private String estado;
-
+    @Column
     private String complemento;
-
+    @NotNull
+    @Column
     private String latitude;
-
+    @NotNull
+    @Column
     private String longitude;
 
-    public EnderecoRequest(String cep, String logradouro, String numero, String bairro, String cidade, String estado, String complemento, String latitude, String longitude) {
+    public EnderecoEntity(String cep, String logradouro, String numero, String bairro, String cidade, String estado, String complemento, String latitude, String longitude) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -48,15 +58,5 @@ public class EnderecoRequest {
         this.latitude = latitude;
         this.longitude = longitude;
     }
-//    {
-//        "cep" : "cep",
-//        "logradouro" : "logradouro",
-//        "numero" : "numero",
-//        "bairro" : "bairro",
-//        "cidade" : "cidade",
-//        "estado" : "estado",
-//        "complemento" : "complemento",
-//        "latitude" : "latitude",
-//        "longitude" : "longitude"
-//    }
+
 }

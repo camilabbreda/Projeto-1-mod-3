@@ -10,6 +10,6 @@ import java.util.ArrayList;
 
 @Repository
 public interface EnderecoRepository extends JpaRepository<EnderecoEntity, Long> {
-    @Query(value="select * from usuario where cep like %?1%", nativeQuery = true)
+    @Query(value="select * from endereco where cep like %?1%", nativeQuery = true)
     ArrayList<UsuarioEntity> getUsuarioEntityByEmail(String cep);
 }

@@ -29,14 +29,14 @@ public class EnderecoController {
             @RequestBody EnderecoRequest request
     ){
         EnderecoResponse enderecoResponse = service.update(id,request);
-        return new ResponseEntity<String>("Usuário atualizado com sucesso", HttpStatus.OK);
+        return new ResponseEntity<String>("Endereço atualizado com sucesso", HttpStatus.OK);
     }
 
     @DeleteMapping(value="/")
     @ResponseBody
     public ResponseEntity<String>deletar(@RequestParam Long id){
         service.delete(id);
-        return new ResponseEntity<String>("Usuário deletado com sucesso", HttpStatus.OK);
+        return new ResponseEntity<String>("Endereço deletado com sucesso", HttpStatus.OK);
     }
 
     @GetMapping(value="/{id}")
