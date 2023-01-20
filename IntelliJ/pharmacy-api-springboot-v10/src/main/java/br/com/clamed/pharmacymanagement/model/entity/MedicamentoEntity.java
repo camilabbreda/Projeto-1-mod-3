@@ -52,4 +52,10 @@ public class MedicamentoEntity {
                 this.preco=preco;
                 this.tipo= tipo;
     }
+//                    this.nome= nome;
+//                this.laboratorio=laboratorio;
+//                this.dosagem=dosagem;
+//                this.descricao=descricao;
+//                this.preco=preco;
+//                this.tipo= tipo;
 }

@@ -17,7 +17,7 @@ import java.util.List;
 public class EnderecoController {
     @Autowired
     private EnderecoService service;
-    @PostMapping(produces = "application/json")
+    @PostMapping(consumes = "application/json",produces = "application/json")
     public ResponseEntity<Object> cadastrar(@RequestBody EnderecoRequest request) {
         EnderecoResponse response = service.save(request);
         return ResponseEntity.ok(request);

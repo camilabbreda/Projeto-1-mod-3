@@ -33,11 +33,11 @@ public class EnderecoEntity {
     @Column
     private String bairro;
     @NotNull
-    @Column
-    private String cidade;
+    @Column(name = "cidade")
+    private String localidade;
     @NotNull
-    @Column
-    private String estado;
+    @Column(name = "estado")
+    private String uf;
     @Column
     private String complemento;
     @NotNull
@@ -47,16 +47,32 @@ public class EnderecoEntity {
     @Column
     private String longitude;
 
-    public EnderecoEntity(String cep, String logradouro, String numero, String bairro, String cidade, String estado, String complemento, String latitude, String longitude) {
+    public EnderecoEntity(String cep, String logradouro, String numero, String bairro, String localidade, String uf, String complemento, String latitude, String longitude) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
         this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
+        this.localidade = localidade;
+        this.uf = uf;
         this.complemento = complemento;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public EnderecoEntity(String cep, String logradouro, String bairro, String localidade, String uf) {
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.bairro = bairro;
+        this.localidade = localidade;
+        this.uf = uf;
+    }
+    public EnderecoEntity(String cep, String numero, String logradouro, String complemento, String latitude, String longitude){
+
+                this.cep=cep;
+                this.numero=numero;
+                this.complemento=complemento;
+                this.latitude=latitude;
+                this.longitude=longitude;
     }
 
 }
