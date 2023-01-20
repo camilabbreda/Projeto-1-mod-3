@@ -3,7 +3,6 @@ package br.com.clamed.pharmacymanagement.controllers;
 import br.com.clamed.pharmacymanagement.controllers.dto.UsuarioRequest;
 import br.com.clamed.pharmacymanagement.controllers.dto.UsuarioResponse;
 import br.com.clamed.pharmacymanagement.model.entity.UsuarioEntity;
-import br.com.clamed.pharmacymanagement.model.repository.UsuarioRepository;
 import br.com.clamed.pharmacymanagement.service.UsuarioService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping(value="/usuario")
 public class UsuarioController {
-    @Autowired
-    private UsuarioRepository usuarioRepository;
     @Autowired
     private UsuarioService service;
     @PostMapping(produces = "application/json")

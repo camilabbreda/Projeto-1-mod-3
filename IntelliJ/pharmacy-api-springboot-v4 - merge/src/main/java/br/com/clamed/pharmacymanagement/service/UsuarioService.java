@@ -22,21 +22,40 @@ public class UsuarioService {
     }
 
     public UsuarioResponse save(UsuarioRequest usuarioRequest) {
-        UsuarioEntity usuarioEntity = repository.save(new UsuarioEntity(usuarioRequest.getEmail(), usuarioRequest.getSenha()));
-        return new UsuarioResponse(usuarioEntity.getEmail(), usuarioEntity.getSenha());
+        try {
+            UsuarioEntity usuarioEntity = repository.save(new UsuarioEntity(usuarioRequest.getEmail(), usuarioRequest.getSenha()));
+            return new UsuarioResponse(usuarioEntity.getEmail(), usuarioEntity.getSenha());
+        } catch (Exception e) {
+            throw new ServerErrorException("Erro desconhecido ao salvar endereço");
+        }
     }
+
 
     public UsuarioResponse update(UsuarioRequest usuarioRequest) {
-        UsuarioEntity usuarioEntity = repository.save(new UsuarioEntity(usuarioRequest.getId(), usuarioRequest.getEmail(), usuarioRequest.getSenha()));
-        return new UsuarioResponse(usuarioEntity.getEmail(), usuarioEntity.getSenha());
+        try {
+            UsuarioEntity usuarioEntity = repository.save(new UsuarioEntity(usuarioRequest.getId(), usuarioRequest.getEmail(), usuarioRequest.getSenha()));
+            return new UsuarioResponse(usuarioEntity.getEmail(), usuarioEntity.getSenha());
+
+        } catch (Exception e) {
+            throw new ServerErrorException("Erro desconhecido ao atualizar usuário");
+        }
     }
 
+
     public void delete(Long id) {
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        }catch (Exception e) {
+            throw new ServerErrorException("Erro desconhecido ao deletar usuário");
+        }
     }
 
     public UsuarioEntity encontraById(Long id) {
-        return repository.findById(id).get();
+        try {
+            return repository.findById(id).get();
+        }catch (Exception e) {
+            throw new ServerErrorException("Erro desconhecido ao encontrar usuário");
+        }
     }
 
     public List<UsuarioResponse> encontraByEmail(String email) throws NotFoundException {
