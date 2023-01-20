@@ -26,5 +26,8 @@ public class UsuarioEntity  implements Serializable {
     private String senha;
 
 
-
+    public UsuarioEntity(String email, String senha) {
+        this.email=email;
+        this.senha=senha;
+    }
 }

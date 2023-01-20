@@ -1,4 +1,4 @@
-package br.com.clamed.pharmacymanagement.repository;
+package br.com.clamed.pharmacymanagement.model.repository;
 
 import br.com.clamed.pharmacymanagement.model.entity.UsuarioEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
