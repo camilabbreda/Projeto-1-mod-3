@@ -21,9 +21,9 @@ public class EnderecoRequest {
 
     private String bairro;
 
-    private String cidade;
+    private String localidade;
 
-    private String estado;
+    private String uf;
 
     private String complemento;
 
@@ -31,26 +31,24 @@ public class EnderecoRequest {
 
     private String longitude;
 
-    public EnderecoRequest(String cep, String logradouro, String numero, String bairro, String cidade, String estado, String complemento, String latitude, String longitude) {
+    public EnderecoRequest(String cep, String logradouro, String numero, String bairro, String localidade, String uf, String complemento, String latitude, String longitude) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
         this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
+        this.localidade = localidade;
+        this.uf = uf;
         this.complemento = complemento;
         this.latitude = latitude;
         this.longitude = longitude;
     }
-//    {
-//        "cep" : "cep",
-//        "logradouro" : "logradouro",
-//        "numero" : "numero",
-//        "bairro" : "bairro",
-//        "cidade" : "cidade",
-//        "estado" : "estado",
-//        "complemento" : "complemento",
-//        "latitude" : "latitude",
-//        "longitude" : "longitude"
-//    }
+    public EnderecoRequest (String cep, String numero, String logradouro, String complemento, String latitude, String longitude){
+        this.cep=cep;
+        this.logradouro=logradouro;
+        this.numero=numero;
+        this.complemento=complemento;
+        this.latitude=latitude;
+        this.longitude=longitude;
+    }
+
 }
