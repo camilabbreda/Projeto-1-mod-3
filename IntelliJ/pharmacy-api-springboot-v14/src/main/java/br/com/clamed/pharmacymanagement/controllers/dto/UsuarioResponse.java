@@ -9,11 +9,11 @@ import lombok.*;
 @AllArgsConstructor
 public class UsuarioResponse {
     private Long id;
-    private String email;
+    private String login;
     private String senha;
 
-    public UsuarioResponse(String email, String senha){
-        this.email =  email;
+    public UsuarioResponse(String login, String senha){
+        this.login =  login;
         this.senha = senha;
     }
 

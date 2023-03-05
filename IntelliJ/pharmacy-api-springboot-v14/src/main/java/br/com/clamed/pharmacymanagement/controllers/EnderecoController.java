@@ -19,17 +19,16 @@ public class EnderecoController {
     @Autowired
     private EnderecoService service;
     @PostMapping(produces = "application/json")
-    public ResponseEntity<Object> cadastrar(@RequestBody EnderecoRequest request) {
+    public ResponseEntity<String> cadastrar(@RequestBody EnderecoRequest request) {
         EnderecoResponse response = service.save(request);
-        return ResponseEntity.ok(request);
+    return new ResponseEntity<String>("Endereço atualizado com sucesso", HttpStatus.CREATED);
     }
 
-    @PutMapping(value="/update/{id}")
+    @PutMapping(value="/update")
     public ResponseEntity<String> atualizar(
-            @PathVariable Long id,
             @RequestBody EnderecoRequest request
     ){
-        EnderecoResponse enderecoResponse = service.update(id,request);
+        EnderecoResponse enderecoResponse = service.update(request);
         return new ResponseEntity<String>("Endereço atualizado com sucesso", HttpStatus.OK);
     }
 

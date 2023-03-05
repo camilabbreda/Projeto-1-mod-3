@@ -36,9 +36,38 @@ public class FarmaciaService {
 
 
 
-    public FarmaciaResponse save(FarmaciaRequest request) {
-        try {
-        EnderecoEntity endereco = enderecoRepository.findById(request.getEnderecoId()).orElseThrow(()-> new NotFoundException("Endereço não existe"));
+//    public FarmaciaResponse save(FarmaciaRequest request) {
+//        try {
+//        EnderecoEntity endereco = enderecoRepository.findById(request.getEnderecoId()).orElseThrow(()-> new NotFoundException("Endereço não existe"));
+//
+//               FarmaciaEntity entity = repository.save(
+//                    new FarmaciaEntity(
+//                            request.getRazaoSocial(),
+//                            request.getCnpj(),
+//                            request.getNomeFantasia(),
+//                            request.getEmail(),
+//                            request.getTelefone(),
+//                            request.getCelular(),
+//                            endereco
+//                    )
+//            );
+//            return new FarmaciaResponse(
+//                    entity.getId(),
+//                    entity.getRazaoSocial(),
+//                    entity.getCnpj(),
+//                    entity.getNomeFantasia(),
+//                    entity.getEmail(),
+//                    entity.getTelefone(),
+//                    entity.getCelular(),
+//                    entity.getEnderecoEntity()
+//            );
+//        } catch (Exception e) {
+//            throw new ServerErrorException("Erro desconhecido ao salvar farmácia", HttpStatus.BAD_REQUEST);
+//        }
+//    }
+public FarmaciaResponse save(FarmaciaRequest request) {
+
+        EnderecoEntity endereco = enderecoRepository.findById(request.getEnderecoId()).get();
 
                FarmaciaEntity entity = repository.save(
                     new FarmaciaEntity(
@@ -49,6 +78,7 @@ public class FarmaciaService {
                             request.getTelefone(),
                             request.getCelular(),
                             endereco
+
                     )
             );
             return new FarmaciaResponse(
@@ -61,16 +91,14 @@ public class FarmaciaService {
                     entity.getCelular(),
                     entity.getEnderecoEntity()
             );
-        } catch (Exception e) {
-            throw new ServerErrorException("Erro desconhecido ao salvar farmácia", HttpStatus.BAD_REQUEST);
-        }
+
     }
 
-    public FarmaciaResponse update(Long id, FarmaciaRequest request) {
+    public FarmaciaResponse update(FarmaciaRequest request) {
         try {
 
             EnderecoEntity endereco = enderecoRepository.findById(request.getEnderecoId()).orElseThrow(()-> new NotFoundException("Endereço não existe"));
-            FarmaciaEntity entity = repository.findById(id).get();
+            FarmaciaEntity entity = repository.findById(request.getId()).get();
 
             if (entity.getId().equals(null)) {
                 throw new NotFoundException();
@@ -98,7 +126,7 @@ public class FarmaciaService {
                 );
             }
         } catch (NotFoundException e) {
-            throw new NotFoundException("Nenhum farmácia encontrado", HttpStatus.NO_CONTENT);
+            throw new NotFoundException("Nenhuma farmácia encontrado", HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             throw new ServerErrorException("Erro desconhecido ao atualizar farmácia", HttpStatus.BAD_REQUEST);
         }

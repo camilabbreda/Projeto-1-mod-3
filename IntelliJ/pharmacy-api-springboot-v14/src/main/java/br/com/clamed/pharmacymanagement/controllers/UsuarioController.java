@@ -66,19 +66,8 @@ public class UsuarioController {
                 HttpStatus.OK
         );
     }
-    @GetMapping(value="/buscarEmail", produces = "application/json")
-    public ResponseEntity<DefaultResponse> getUsuarioByEmail(@RequestParam(name="email") String email) throws NotFoundException {
-        List<UsuarioResponse> usuarios = service.encontraByEmail(email);
-        return new ResponseEntity<>((
-                new DefaultResponse<List>(
-                        HttpStatus.OK.value(),
-                        usuarios
-                )),
-                HttpStatus.OK
-        );
-    }
 
-    @GetMapping(value="/login", produces = "application/json")
+    @GetMapping(value="/username", produces = "application/json")
     public ResponseEntity<DefaultResponse> getUsuarios() throws NotFoundException {
         List<UsuarioResponse> usuarios = service.encontraTodosUsuarios();
         return new ResponseEntity<>((

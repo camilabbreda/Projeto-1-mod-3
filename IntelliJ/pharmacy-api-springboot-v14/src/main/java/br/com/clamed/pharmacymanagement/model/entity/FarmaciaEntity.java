@@ -39,8 +39,8 @@ public class FarmaciaEntity {
     @NotNull
     @Column
     private String celular;
-    @JoinColumn(name = "fk_id_endereco")
     @OneToOne
+    @JoinColumn(name = "fk_id_endereco")
     @NotNull
     private EnderecoEntity enderecoEntity;
 

@@ -10,6 +10,9 @@ import java.util.List;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long> {
-    @Query(value="select * from usuario where email like %?1%", nativeQuery = true)
-    ArrayList<UsuarioEntity> getUsuarioEntityByEmail(String email);
+    @Query(value="select * from usuario where login like %?1%", nativeQuery = true)
+    ArrayList<UsuarioEntity> getUsuarioEntityByEmail(String login);
+
+    @Query("select u from UsuarioEntity u where u.login = ?1")
+    UsuarioEntity findUserByLogin(String login);
 }
