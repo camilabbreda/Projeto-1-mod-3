@@ -22,17 +22,16 @@ public class MedicamentoController {
     @Autowired
     private MedicamentoService service;
     @PostMapping(produces = "application/json")
-    public ResponseEntity<Object> cadastrar(@RequestBody MedicamentoRequest request) {
+    public ResponseEntity<String> cadastrar(@RequestBody MedicamentoRequest request) {
         MedicamentoResponse response = service.save(request);
-        return ResponseEntity.ok(HttpStatus.CREATED);
+        return new ResponseEntity<String>("medicamento cadastrado com wsucesso",HttpStatus.CREATED);
     }
 
-    @PutMapping(value="/update/{id}")
+    @PutMapping(value="/update")
     public ResponseEntity<String> atualizar(
-            @PathVariable Long id,
-            @RequestBody MedicamentoRequest request
+                 @RequestBody MedicamentoRequest request
     ){
-        MedicamentoResponse response = service.update(id,request);
+        MedicamentoResponse response = service.update(request);
         return new ResponseEntity<String>("Medicamento atualizado com sucesso", HttpStatus.OK);
     }
 

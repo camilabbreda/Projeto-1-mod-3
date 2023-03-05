@@ -10,12 +10,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsuarioRequest {
-    private String email;
+    private String login;
     private String senha;
     private Long id;
 
     public UsuarioRequest(String email, String senha){
-        this.email=email;
+        this.login=email;
         this.senha=senha;
     }
 }

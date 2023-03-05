@@ -37,10 +37,12 @@ public class EnderecoService {
     public EnderecoResponse save(EnderecoRequest request) {
         try {
             EnderecoEntity endereco = feign.buscaCep(request.getCep());
-            endereco.setLogradouro(endereco.getLogradouro().isEmpty() ? request.getLogradouro():endereco.getLogradouro());
+            endereco.setLogradouro(endereco.getLogradouro()==null ? request.getLogradouro():endereco.getLogradouro());
             endereco.setNumero(request.getNumero());
-            endereco.setBairro(endereco.getBairro().isEmpty()? request.getBairro():endereco.getBairro());
+            endereco.setBairro(endereco.getBairro()==null? request.getBairro():endereco.getBairro());
             endereco.setComplemento(request.getComplemento());
+            endereco.setUf(endereco.getUf()==null? request.getUf():endereco.getBairro());
+            endereco.setLocalidade(endereco.getLocalidade()==null? request.getLocalidade():endereco.getLocalidade());
             endereco.setLatitude(request.getLatitude());
             endereco.setLongitude(request.getLongitude());
 
@@ -75,14 +77,14 @@ public class EnderecoService {
             throw new ServerErrorException("Erro desconhecido ao salvar endereço", HttpStatus.BAD_REQUEST);
         }
     }
-    public EnderecoResponse update(Long id, EnderecoRequest request) {
+    public EnderecoResponse update(EnderecoRequest request) {
         try {
 
-            EnderecoEntity entity = repository.findById(id).get();
-            System.out.println(entity.getId());
+            EnderecoEntity entity = repository.findById(request.getId()).get();
             if (entity.getId().equals(null)) {
                 throw new NotFoundException();
             } else {
+                entity.setId(request.getId());
                 entity.setCep(request.getCep());
                 entity.setLogradouro(request.getLogradouro());
                 entity.setNumero(request.getNumero());
@@ -92,6 +94,7 @@ public class EnderecoService {
                 entity.setComplemento(request.getComplemento());
                 entity.setLatitude(request.getLatitude());
                 entity.setLongitude(request.getLongitude());
+
                 repository.save(entity);
 
                 return new EnderecoResponse(
@@ -153,7 +156,7 @@ public class EnderecoService {
             }
             return enderecos;
         }catch(NotFoundException e){
-            throw new NotFoundException("Nenhum assunto encontrado", HttpStatus.NO_CONTENT);
+            throw new NotFoundException("Nenhum endereço encontrado", HttpStatus.NO_CONTENT);
         }catch (Exception e) {
             throw new ServerErrorException("Erro desconhecido ao buscar endereços.", HttpStatus.BAD_REQUEST);
         }

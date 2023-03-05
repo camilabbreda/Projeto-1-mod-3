@@ -54,14 +54,14 @@ public class MedicamentoService {
 
 
 
-    public MedicamentoResponse update(Long id, MedicamentoRequest request) {
+    public MedicamentoResponse update( MedicamentoRequest request) {
         try {
 
-            MedicamentoEntity entity = repository.findById(id).get();
-            System.out.println(entity.getId());
+            MedicamentoEntity entity = repository.findById(request.getId()).get();
             if (entity.getId().equals(null)) {
                 throw new NotFoundException();
             } else {
+                entity.setId(request.getId());
                 entity.setNome(request.getNome());
                 entity.setLaboratorio(request.getLaboratorio());
                 entity.setDosagem(request.getDosagem());
